@@ -11,9 +11,11 @@ pipeline {
         }
 
             stage('UNIT Test'){
-                withMaven(maven: 'mvn') {
-                     sh "mvn clean package"
-             }
+                steps{
+                    script{
+                        sh 'mvn test'
+                    }
+            }
         }
     }
 }
