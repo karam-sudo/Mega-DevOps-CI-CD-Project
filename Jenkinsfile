@@ -15,8 +15,8 @@ pipeline {
                     script{
                         sh 'mvn test'
                     }
+                }
             }
-        }
             stage('Integration testing'){
                 
                 steps{
@@ -29,13 +29,26 @@ pipeline {
             }
             stage('Maven build'){
             
-            steps{
-                
-                script{
+                steps{
                     
-                    sh 'mvn clean install'
+                    script{
+                        
+                        sh 'mvn clean install'
+                    }
+                }
+            }
+            stage('Static code analysis'){
+                
+                steps{
+                    
+                    script{
+                        
+                        withSonarQubeEnv(credentialsId: 'sonar-api') {
+                            sh 'mvn clean package sonar:sonar'
+                        }
+                    }
+                        
                 }
             }
         }
-    }
 }
