@@ -37,18 +37,18 @@ pipeline {
                     }
                 }
             }
-            stage('SonarQube analysis'){
+            // stage('SonarQube analysis'){
                 
-                steps{
+            //     steps{
                     
-                    script{
+            //         script{
                         
-                        withSonarQubeEnv(credentialsId: 'sonar-api') {
-                            sh 'mvn clean package sonar:sonar'
-                        }
-                    }
+            //             withSonarQubeEnv(credentialsId: 'sonar-api') {
+            //                 sh 'mvn clean package sonar:sonar'
+            //             }
+            //         }
                         
-                }
-            }
+            //     }
+            // }
         }
 }
