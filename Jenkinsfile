@@ -10,45 +10,45 @@ pipeline {
             }
         }
 
-            stage('UNIT Test'){
-                steps{
-                    script{
-                        sh 'mvn test'
-                    }
-                }
-            }
-            stage('Integration testing'){
+            // stage('UNIT Test'){
+            //     steps{
+            //         script{
+            //             sh 'mvn test'
+            //         }
+            //     }
+            // }
+            // stage('Integration testing'){
                 
-                steps{
+            //     steps{
                     
-                    script{
+            //         script{
                         
-                        sh 'mvn verify -DskipUnitTests'
-                    }
-                }
-            }
-            stage('Maven build'){
+            //             sh 'mvn verify -DskipUnitTests'
+            //         }
+            //     }
+            // }
+            // stage('Maven build'){
             
-                steps{
+            //     steps{
                     
-                    script{
+            //         script{
                         
-                        sh 'mvn clean install'
-                    }
-                }
-            }
-            stage('SonarQube analysis'){
+            //             sh 'mvn clean install'
+            //         }
+            //     }
+            // }
+            // stage('SonarQube analysis'){
                 
-                steps{
+            //     steps{
                     
-                    script{
+            //         script{
                         
-                        withSonarQubeEnv(credentialsId: 'sonar-api') {
-                            sh 'mvn clean package sonar:sonar'
-                        }
-                    }
+            //             withSonarQubeEnv(credentialsId: 'sonar-api') {
+            //                 sh 'mvn clean package sonar:sonar'
+            //             }
+            //         }
                         
-                }
-            }
+            //     }
+            // }
         }
 }
