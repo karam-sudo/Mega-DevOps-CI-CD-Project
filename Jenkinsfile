@@ -62,7 +62,7 @@ pipeline {
                 steps{
                     script{
 
-                        def readPomVersion = readMavenPom file: 'pom.xml'
+                        //def readPomVersion = readMavenPom file: 'pom.xml'
                         nexusArtifactUploader artifacts: [
                             [
                                 artifactId: 'springboot',
@@ -77,7 +77,7 @@ pipeline {
                              nexusVersion: 'nexus3',
                              protocol: 'http',
                              repository: 'FirstProjectRelease/',
-                             version: '1.0.0'
+                             version: '1.0.1'
                     }
                 }
             }
