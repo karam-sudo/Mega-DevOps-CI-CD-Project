@@ -62,7 +62,7 @@ pipeline {
                 steps{
                     script{
 
-                        def readPomVersion = readMavenPom file: 'pom.xml'
+                        //def readPomVersion = readMavenPom file: 'pom.xml'
                         // def nexusRepo = readPomVersion.version.endsWith("SNAPSHOT") ? "FirstProjectSnapShot" : "FirstProjectRelease"
                         nexusArtifactUploader artifacts: [
                             [artifactId: 'springboot',
@@ -75,7 +75,7 @@ pipeline {
                             nexusVersion: 'nexus3', 
                             protocol: 'http', 
                             repository: 'FirstProjectRelease' ,  
-                            version: "${readPomVersion.version}"
+                            version: "1.0.0"
                     }
                 }
             }
@@ -88,17 +88,17 @@ pipeline {
                     }
                 }
             }
-            stage('Push image to DockerHub'){
-                steps{
-                    script{
-                        withCredentials([string(credentialsId: 'docker-cred', variable: 'docker-hub-cred')]) {
-                            sh 'docker login -u khalabi -p $docker-hub-cred'
-                            sh 'docker image push khalabi/$JOB_NAME:v1.$BUILD_ID'
-                            sh 'docker image push khalabi/$JOB_NAME:latest'
-                        }
+            // stage('Push image to DockerHub'){
+            //     steps{
+            //         script{
+            //             withCredentials([string(credentialsId: 'docker-cred', variable: 'docker-hub-cred')]) {
+            //                 sh 'docker login -u khalabi -p $docker-hub-cred'
+            //                 sh 'docker image push khalabi/$JOB_NAME:v1.$BUILD_ID'
+            //                 sh 'docker image push khalabi/$JOB_NAME:latest'
+            //             }
                         
-                    }
-                }
-            }
+            //         }
+            //     }
+            // }
         }
 }
